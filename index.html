@@ -72,25 +72,39 @@
         top: 5%;
         border-radius: 6px;
         box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
-        padding: 10px 15px;
+        padding: 5px 12px;
         box-sizing: border-box;
         z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
       }
 
       .letter-content {
-        margin-top: 3.5%;
-        margin-bottom: 3.5%;
-        font-size: 0.78rem;
+        font-size: 0.75rem;
+        margin-top: 5%;
+        margin-bottom: 5%;
         text-align: justify;
         line-height: 1.25;
         color: #333;
       }
 
+      #friend-photo {
+        display: block;
+        width: 105px;
+        height: 105px;
+        object-fit: cover;
+        margin: 10% auto 0 auto;
+        transform: translateY(-100px);
+        position: relative;
+      }
+
       .signature {
         text-align: right;
-        margin-top: 8px;
+        margin-top: 2%;
+        megin-bottom: 3%;
         font-weight: bold;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         color: #562F6D;
       }
 
@@ -111,13 +125,23 @@
         transition: transform 0.4s ease, z-index 1s;
         z-index: 1;
       }
-
+      
       .open .letter {
-        transform: translateY(-140px); 
+        transform: translateY(-170px); 
         transition: transform 0.4s 0.6s ease, z-index 2s;
         z-index: 2;
       }
-
+      
+      .open #friend-photo {
+        transform: translateY(-30px); 
+        transition: transform 0.4s 0.6s ease, z-index 2s;
+        z-index: 1;
+      }
+      .close #friend-photo {
+        transform: translateY(-110px);
+        transition: transform 0.4s ease, z-index 1s;
+        z-index: 1;
+      }
       .hearts {
         position: absolute;
         top: 90px;
@@ -228,9 +252,10 @@
         <div class="front pocket"></div>
         <div class="letter">
           <div class="letter-content">
-            <div id="recipient-name" style="font-weight: bold; margin-bottom: 5px; color:#562F6D;">To: Friend</div>
+            <div id="recipient-name" style="font-weight: bold; margin-bottom: 3px; color:#562F6D;">To: Friend</div>
             <div id="message-body"></div>
             <div class="signature">From: Jade Bianca</div>
+            <img id="friend-photo" src="" alt="friend-photo" style="display:none;">
           </div>
         </div>
         <div class="hearts">
@@ -259,14 +284,14 @@
         var btn_reset = $("#reset");
 
         const friends = {
-          "030325": { name: "Jo", msg: "I am so thankful for all the happy times we shared since high school. We grew so much closer, and I treasure those days deeply. I am rooting for you and can’t wait to see you wearing your white coat! 🩷" },
-          "020423": { name: "Eri", msg: "I am so grateful for all the happy moments we’ve shared and truly appreciate having such a thoughtful friend like you. I hope you find success in everything you do because you deserve nothing but the best. I know you will become an amazing and successful RRT in the future! 💜🩷" },
-          "052523": { name: "Kei", msg: "I truly admire your maturity and how comfortable it feels to talk to you about anything. I am grateful for our friendship, and I wish you all the luck in the world. I can’t wait to see you also wearing your white coat! 💙" },
-          "070324": { name: "Neng", msg: "I am genuinely thankful for the happy times we got to spend together. I truly hope you are finding lots of joy and peace while staying in Malta. May your future be filled with luck and all the things that make you smile! 🩶" },
-          "092423": { name: "Hanami", msg: "You are such a humorous friend and I am lucky to have you in my life. I appreciate you so much for traveling all the way from Cavite to Manila just for us to hang out. Good luck with everything your future holds for you! 💚" },
-          "092624": { name: "Rico", msg: "Being best friends since kinder is something I will always be thankful for. You are such a funny person to be around and I look forward to more spontaneous galas and chikas with you. I wish you nothing but the best in your journey ahead! 💙" },
-          "052825": { name: "Derrick", msg: "I am very thankful for the fun times we’ve had, and I hope we grow even closer in the future. You are a wonderful friend with an amazing sense of humor, so keep being yourself. Good luck with your studies and everything else you do! 💙" },
-          "112023": { name: "Che", msg: "I really value how mature you are and how comfortable it is to talk to you about anything. I am thankful for our friendship, and I’m looking forward to more galas and chikas with you. I wish you so much luck for your future! 💙" }
+          "030325": { name: "Jo", msg: "I am so thankful for all the happy times we shared since high school. We grew so much closer, and I treasure those days deeply. I am rooting for you and can’t wait to see you wearing your white coat! 🩷", img: "https://drive.google.com/thumbnail?id=1G1RmzQRcT6YxGDDUtO3q8PF9f7XYJJvE&&sz=w2000-h2000" },
+          "020423": { name: "Eri", msg: "I am so grateful for all the happy moments we’ve shared and truly appreciate having such a thoughtful friend like you. I hope you find success in everything you do because you deserve nothing but the best. I know you will become an amazing and successful RRT in the future! 💜🩷", img: "https://drive.google.com/thumbnail?id=19kmvbafX9zQ3VFhbiaCv16A0M4siQq6n&&sz=w2000-h2000" },
+          "061423": { name: "Kei", msg: "I truly admire your maturity and how comfortable it feels to talk to you about anything. I am grateful for our friendship, and I wish you all the luck in the world. I can’t wait to see you also wearing your white coat! 💙", img: "https://drive.google.com/thumbnail?id=18_gmQMlanAfKl20Lc2ueKjfDGdHrh1tb&&sz=w2000-h2000" },
+          "071524": { name: "Neng", msg: "I am genuinely thankful for the happy times we got to spend together. I truly hope you are finding lots of joy and peace while staying in Malta. May your future be filled with luck and all the things that make you smile! 🩶", img: "https://drive.google.com/thumbnail?id=1E67D40C8_QjZhOH1u9BBhXtgSzGZS8CX&&sz=w2000-h2000" },
+          "122823": { name: "Hanami", msg: "You are such a humorous friend and I am lucky to have you in my life. I appreciate you so much for traveling all the way from Cavite to Manila just for us to hang out. Good luck with everything your future holds for you! 💚", img: "https://drive.google.com/thumbnail?id=1Q8daZU0f1TlU8mAXDPA8IQ1scmkQrfJT&&sz=w2000-h2000" },
+          "051624": { name: "Rico", msg: "Being best friends since kinder is something I will always be thankful for. You are such a funny person to be around and I look forward to more spontaneous galas and chikas with you. I wish you nothing but the best in your journey ahead! 💙", img: "https://drive.google.com/thumbnail?id=1F2wbizNCMIhYqsOVv9_h_GYCxzm8aV_7&&sz=w2000-h2000" },
+          "032625": { name: "Derrick", msg: "I am very thankful for the fun times we’ve had, and I hope we grow even closer in the future. You are a wonderful friend with an amazing sense of humor, so keep being yourself. Good luck with your studies and everything else you do! 💙", img: "https://drive.google.com/thumbnail?id=15jRNcmBAGRhYXupRF1JXM1R25FBefUKZ&&sz=w2000-h2000" },
+          "030623": { name: "Che", msg: "I really value how mature you are and how comfortable it is to talk to you about anything. I am thankful for our friendship, and I’m looking forward to more galas and chikas with you. I wish you so much luck for your future! 💙", img: "https://drive.google.com/thumbnail?id=12vJH4MhsDvjkHhoymG_zlrssNYLoz_wH&&sz=w2000-h2000" }
         };
 
         function open() {
@@ -274,6 +299,7 @@
           if (friends[passcode]) {
             $("#recipient-name").text("To: " + friends[passcode].name);
             $("#message-body").text(friends[passcode].msg);
+            $("#friend-photo").attr("src", friends[passcode].img).show();
             envelope.addClass("open").removeClass("close");
           } else if (passcode !== null) {
             alert("Invalid Passcode!");
