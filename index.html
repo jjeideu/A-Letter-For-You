@@ -158,10 +158,6 @@
         transform-origin: 100% 100%;
       }
 
-      .open .heart {
-        animation: slideUp 3s linear forwards, sideSway 1.5s ease-in-out infinite alternate;
-      }
-
       @keyframes slideUp {
         0% { top: 0; opacity: 1; }
         90% { opacity: 1; }
@@ -173,10 +169,10 @@
         100% { margin-left: 50px; }
       }
 
-      .a1 { left: 20%; transform: scale(0.4); animation-delay: 0.7s; }
-      .a2 { left: 55%; transform: scale(0.6); animation-delay: 1s; }
-      .a3 { left: 10%; transform: scale(0.5); animation-delay: 1.2s; }
-
+      .a1 { left: 20%; transform: scale(0.6); animation: slideUp 4s linear 1 forwards, sideSway 2s ease-in-out 4 alternate; animation-delay: 0.7s; }
+      .a2 { left: 55%; transform: scale(1); animation: slideUp 5s linear 1 forwards, sideSway 4s ease-in-out 2 alternate; animation-delay: 0.7s; }
+      .a3 { left: 10%; transform: scale(0.8); animation: slideUp 7s linear 1 forwards, sideSway 2s ease-in-out 6 alternate; animation-delay: 0.7s; }
+      
       .reset { text-align: center; margin-top: 30px; }
       .reset button {
         font-weight: 800;
@@ -198,11 +194,27 @@
 
       footer {
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
         margin-top: 40px;
+        padding-bottom: 10px;
+      }
+      
+      .footer-text {
         color: #6c3a8a;
         font-family: Arial, sans-serif;
-        font-size: 12px;
-        padding-bottom: 20px;
+        font-size: 14px;
+        margin: 0;
+        font-weight: bold;
+        line-height: 1;
+      } 
+      
+      .footer-logo {
+        width: 25px;
+        height: auto;
+        display: block;
       }
     </style>
   </head>
@@ -232,7 +244,8 @@
     </div>
 
     <footer>
-      <p>&copy; 2025 Jade Bianca</p>
+      <img src="https://drive.google.com/thumbnail?id=1ZaeTdT0KDsWSXQMfyn2SpJbs7Cl7f7V-&&sz=w2000-h2000" alt="Logo" class="footer-logo">
+      <p class="footer-text">2025 Jade Bianca</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
